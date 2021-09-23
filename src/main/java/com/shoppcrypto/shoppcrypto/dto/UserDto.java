@@ -3,6 +3,7 @@ package com.shoppcrypto.shoppcrypto.dto;
 import com.shoppcrypto.shoppcrypto.model.User;
 
 public class UserDto {
+    private Long id;
     private String email;
     private String name;
     private String nickName;
@@ -11,6 +12,11 @@ public class UserDto {
         this.email = user.getEmail();
         this.name = user.getName();
         this.nickName = user.getNickName();
+        this.id = user.getId();
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getEmail() {

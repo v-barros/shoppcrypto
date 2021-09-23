@@ -1,5 +1,6 @@
 package com.shoppcrypto.shoppcrypto.persistence.impl;
 
+import com.shoppcrypto.shoppcrypto.dto.UserDto;
 import com.shoppcrypto.shoppcrypto.model.User;
 import com.shoppcrypto.shoppcrypto.persistence.repository.UserRepository;
 import com.shoppcrypto.shoppcrypto.persistence.service.UserRepositoryService;
@@ -17,5 +18,14 @@ public class UserRepositoryServiceImpl implements UserRepositoryService {
     @Override
     public Optional<User> save(User user) {
         return Optional.ofNullable(userRepository.save(user));
+    }
+
+    @Override
+    public Optional<UserDto> findDtoById(Long id) {
+        Optional<User> optionalUser = userRepository.findById(id);
+        if(optionalUser.isPresent())
+            return Optional.ofNullable(new UserDto(optionalUser.get()));
+
+        return Optional.empty();
     }
 }

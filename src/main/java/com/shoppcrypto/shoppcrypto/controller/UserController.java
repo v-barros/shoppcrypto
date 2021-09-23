@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.transaction.Transactional;
 import java.net.URI;
 import java.util.Optional;
 
@@ -23,6 +24,7 @@ public class UserController {
     private static final String path = "/users/{id}";
 
     @PostMapping
+    @Transactional
     private ResponseEntity<UserDto> saveUser(@RequestBody UserForm userForm, UriComponentsBuilder uriBuilder){
         User user = new User(userForm);
         Optional<User>  optionalUser = userRepositoryService.save(user);
@@ -34,4 +36,14 @@ public class UserController {
         }
         return ResponseEntity.badRequest().build();
     }
+
+    @GetMapping("/{id}")
+    private ResponseEntity<UserDto> getUser (@PathVariable Long id){
+        Optional<UserDto> optionalUserDto= userRepositoryService.findDtoById(id);
+        if(optionalUserDto.isPresent()){
+            return ResponseEntity.ok(optionalUserDto.get());
+        }
+        return ResponseEntity.notFound().build();
+    }
+
 }
