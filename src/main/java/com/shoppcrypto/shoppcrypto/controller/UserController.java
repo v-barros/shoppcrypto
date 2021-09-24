@@ -13,6 +13,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.transaction.Transactional;
 import java.net.URI;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController()
 @RequestMapping("/user")
@@ -38,7 +39,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    private ResponseEntity<UserDto> getUser (@PathVariable Long id){
+    private ResponseEntity<UserDto> getUser (@PathVariable UUID id){
         Optional<UserDto> optionalUserDto= userRepositoryService.findDtoById(id);
         if(optionalUserDto.isPresent()){
             return ResponseEntity.ok(optionalUserDto.get());

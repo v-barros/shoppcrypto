@@ -7,6 +7,7 @@ import com.shoppcrypto.shoppcrypto.persistence.service.UserRepositoryService;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 public class UserRepositoryServiceImpl implements UserRepositoryService {
@@ -21,7 +22,7 @@ public class UserRepositoryServiceImpl implements UserRepositoryService {
     }
 
     @Override
-    public Optional<UserDto> findDtoById(Long id) {
+    public Optional<UserDto> findDtoById(UUID id) {
         Optional<User> optionalUser = userRepository.findById(id);
         if(optionalUser.isPresent())
             return Optional.ofNullable(new UserDto(optionalUser.get()));

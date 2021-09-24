@@ -4,18 +4,22 @@ import com.shoppcrypto.shoppcrypto.form.UserForm;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.UUID;
 
-@Entity(name = "tuser")
+@Entity(name = "users")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id",updatable = false,unique = true,nullable = false,columnDefinition = "BINARY(16)")
+    private UUID id;
     private String email;
     private String password;
     private String name;
+    @Column(name = "taxid")
     private String taxId;
     private char gender;
+    @Column(name = "nickname")
     private String nickName;
 
     public User(UserForm userForm){
@@ -29,7 +33,7 @@ public class User {
     public User() {
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 

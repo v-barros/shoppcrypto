@@ -2,8 +2,10 @@ package com.shoppcrypto.shoppcrypto.dto;
 
 import com.shoppcrypto.shoppcrypto.model.User;
 
+import java.util.UUID;
+
 public class UserDto {
-    private Long id;
+    private UUID id;
     private String email;
     private String name;
     private String nickName;
@@ -15,7 +17,7 @@ public class UserDto {
         this.id = user.getId();
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
