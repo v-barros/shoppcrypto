@@ -13,10 +13,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id",updatable = false,unique = true,nullable = false,columnDefinition = "BINARY(16)")
     private UUID id;
+    @Column(unique = true,nullable = false)
     private String email;
+    @Column(nullable = false)
     private String password;
+    @Column(nullable = false)
     private String name;
-    @Column(name = "taxid")
+    @Column(name = "taxid",nullable = false)
     private String taxId;
     private char gender;
     @Column(name = "nickname")
