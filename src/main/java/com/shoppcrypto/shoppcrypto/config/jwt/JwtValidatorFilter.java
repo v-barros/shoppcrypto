@@ -2,6 +2,8 @@ package com.shoppcrypto.shoppcrypto.config.jwt;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.shoppcrypto.shoppcrypto.config.ConfigProperties;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,11 +18,21 @@ import java.util.ArrayList;
 
 public class JwtValidatorFilter extends BasicAuthenticationFilter {
 
+    //shoppcrypto.jwt.expiration
+    private Integer TOKEN_DURATION;
+
+    //shoppcrypto.jwt.secret
+    private String TOKEN_SECRET;
+
+    private ConfigProperties configProperties;
     public static final String TOKEN_HEADER_NAME = "Authorization";
     public static final String TOKEN_TYPE = "Bearer ";
 
-    public JwtValidatorFilter(AuthenticationManager authenticationManager) {
+    public JwtValidatorFilter(AuthenticationManager authenticationManager, ConfigProperties configProperties) {
         super(authenticationManager);
+        this.configProperties = configProperties;
+        this.TOKEN_SECRET = configProperties.getConfigValue("shoppcrypto.jwt.secret");
+        this.TOKEN_DURATION = Integer.parseInt(configProperties.getConfigValue("shoppcrypto.jwt.expiration"));
     }
 
     @Override
@@ -32,11 +44,10 @@ public class JwtValidatorFilter extends BasicAuthenticationFilter {
         }
 
         chain.doFilter(request, response);
-
     }
 
     private UsernamePasswordAuthenticationToken getAuthentication(String token){
-        String user = JWT.require(Algorithm.HMAC512(JwtAuthenticationFilter.TOKEN_GUID))
+        String user = JWT.require(Algorithm.HMAC512(TOKEN_SECRET))
                 .build()
                 .verify(token)
                 .getSubject();
