@@ -9,7 +9,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - mysql_data:/var/lib/mysql
+      - mysql-data:/var/lib/mysql
     networks:
       - mysql-compose-network
 
@@ -20,9 +20,40 @@ services:
     networks:
       - mysql-compose-network
 
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "root"
+      MONGO_INITDB_ROOT_PASSWORD: "123456"
+    volumes:
+      - mongodb-data:/data/db
+    networks:
+      - mongodb-network
+    ports:
+      - "27017:27017"
+
+
+  mongo-express:
+    image: mongo-express
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: 123465
+      ME_CONFIG_MONGODB_URL: mongodb://root:123456@mongo:27017/
+
+    depends_on:
+      - mongo
+    networks:
+      - mongodb-network
+    ports:
+      - "8081:8081"
+
+
 networks: 
   mysql-compose-network:
     driver: bridge
+  mongodb-network:
+    driver: bridge
 
 volumes:
- mysql_data: {}
+  mysql-data: {}
+  mongodb-data: {}
