@@ -2,6 +2,9 @@ package com.shoppcrypto.shoppcrypto.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -11,16 +14,21 @@ public class Product {
     private String id;
     private String title;
     private String description;
+    @Enumerated(EnumType.STRING)
+    private ProductCategory productCategory;
     private Long fiatPrice;
     private UUID ownerId;
 
-    public Product(String id, String title, String description, Long fiatPrice, UUID ownerId) {
+    public Product(String id, String title, String description, Long fiatPrice, UUID ownerId,ProductCategory productCategory) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.fiatPrice = fiatPrice;
         this.ownerId = ownerId;
+        this.productCategory = productCategory;
     }
+
+    public Product(){}
 
     @Override
     public String toString() {
@@ -28,17 +36,16 @@ public class Product {
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
+                ", productCategory=" + productCategory +
                 ", fiatPrice=" + fiatPrice +
                 ", ownerId=" + ownerId +
                 '}';
     }
 
-    public Product(){}
-
-
     public void setId(String id){
         this.id=id;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -50,6 +57,14 @@ public class Product {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    public ProductCategory getProductCategory() {
+        return productCategory;
+    }
+
+    public void setProductCategory(ProductCategory productCategory) {
+        this.productCategory = productCategory;
     }
 
     public String getId() {

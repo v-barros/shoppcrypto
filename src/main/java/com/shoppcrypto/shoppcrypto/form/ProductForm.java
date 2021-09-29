@@ -1,6 +1,7 @@
 package com.shoppcrypto.shoppcrypto.form;
 
 import com.shoppcrypto.shoppcrypto.model.Product;
+import com.shoppcrypto.shoppcrypto.model.ProductCategory;
 
 import java.util.UUID;
 
@@ -10,12 +11,14 @@ public class ProductForm {
     private String description;
     private Long fiatPrice;
     private UUID ownerId;
+    private ProductCategory productCategory;
 
-    public ProductForm(String title, String description, Long fiatPrice, UUID ownerId) {
+    public ProductForm(String title, String description, Long fiatPrice, UUID ownerId, ProductCategory productCategory) {
         this.title = title;
         this.description = description;
         this.fiatPrice = fiatPrice;
         this.ownerId = ownerId;
+        this.productCategory = productCategory;
     }
 
     public Product toProduct(){
@@ -24,6 +27,7 @@ public class ProductForm {
         product.setFiatPrice(this.fiatPrice);
         product.setTitle(this.title);
         product.setOwnerId(this.ownerId);
+        product.setProductCategory(this.productCategory);
         return product;
     }
 
@@ -32,9 +36,18 @@ public class ProductForm {
         return "ProductForm{" +
                 "title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", fiatPrice=" + fiatPrice.toString() +
+                ", fiatPrice=" + fiatPrice +
                 ", ownerId=" + ownerId +
+                ", productCategory=" + productCategory +
                 '}';
+    }
+
+    public ProductCategory getProductCategory() {
+        return productCategory;
+    }
+
+    public void setProductCategory(ProductCategory productCategory) {
+        this.productCategory = productCategory;
     }
 
     public UUID getOwnerId() {

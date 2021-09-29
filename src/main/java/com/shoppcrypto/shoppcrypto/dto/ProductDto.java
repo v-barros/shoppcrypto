@@ -1,6 +1,7 @@
 package com.shoppcrypto.shoppcrypto.dto;
 
 import com.shoppcrypto.shoppcrypto.model.Product;
+import com.shoppcrypto.shoppcrypto.model.ProductCategory;
 
 import java.util.Objects;
 import java.util.UUID;
@@ -11,13 +12,15 @@ public class ProductDto {
     private String description;
     private Long fiatPrice;
     private UUID ownerId;
+    private ProductCategory productCategory;
 
-    public ProductDto(String id, String title, String description, Long fiatPrice, UUID ownerId) {
+    public ProductDto(String id, String title, String description, Long fiatPrice, UUID ownerId, ProductCategory productCategory) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.fiatPrice = fiatPrice;
         this.ownerId = ownerId;
+        this.productCategory = productCategory;
     }
 
     public ProductDto(Product product){
@@ -26,9 +29,18 @@ public class ProductDto {
         this.ownerId = product.getOwnerId();
         this.id = product.getId();
         this.title = product.getTitle();
+        this.productCategory = product.getProductCategory();
     }
 
     public  ProductDto(){}
+
+    public ProductCategory getProductCategory() {
+        return productCategory;
+    }
+
+    public void setProductCategory(ProductCategory productCategory) {
+        this.productCategory = productCategory;
+    }
 
     public String getId() {
         return id;
