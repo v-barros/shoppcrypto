@@ -39,4 +39,14 @@ public class ProductController {
         return ResponseEntity.badRequest().build();
     }
 
+    @GetMapping("/products/{id}")
+    public ResponseEntity<ProductDto> getProduct (@PathVariable String id){
+        Optional<Product> optionalProduct = productRepository.findById(id);
+
+        if(optionalProduct.isPresent()){
+            return ResponseEntity.ok(new ProductDto(optionalProduct.get()));
+        }
+        return ResponseEntity.notFound().build();
+    }
+
 }
