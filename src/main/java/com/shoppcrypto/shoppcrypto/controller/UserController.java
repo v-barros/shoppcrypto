@@ -4,13 +4,11 @@ package com.shoppcrypto.shoppcrypto.controller;
 import com.shoppcrypto.shoppcrypto.business.UserBusinessService;
 import com.shoppcrypto.shoppcrypto.dto.UserDto;
 import com.shoppcrypto.shoppcrypto.form.UserForm;
-import com.shoppcrypto.shoppcrypto.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-
-import javax.transaction.Transactional;
 import java.net.URI;
 import java.util.Optional;
 import java.util.UUID;
