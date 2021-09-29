@@ -49,4 +49,9 @@ public class ProductController {
         return ResponseEntity.notFound().build();
     }
 
+    @GetMapping()
+    public List listProducts(){
+        List<Product> productDtos = productRepository.findAll();
+        return productDtos;
+    }
 }
