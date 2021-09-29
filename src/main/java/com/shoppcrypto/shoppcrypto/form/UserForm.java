@@ -1,5 +1,7 @@
 package com.shoppcrypto.shoppcrypto.form;
 
+import com.shoppcrypto.shoppcrypto.model.User;
+
 public class UserForm {
 
     private String email;
@@ -16,6 +18,16 @@ public class UserForm {
         this.taxId = taxId;
         this.gender = gender;
         this.nickName = nickName;
+    }
+    public User toUser(){
+        User user = new User();
+        user.setEmail(getEmail());
+        user.setPassword(getPassword());
+        user.setName(getName());
+        user.setTaxId(getTaxId());
+        user.setGender(getGender());
+        user.setNickName(getNickName());
+        return user;
     }
 
     public String getEmail() {

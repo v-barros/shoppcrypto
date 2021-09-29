@@ -27,7 +27,7 @@ public class UserBusinessServiceImpl implements UserBusinessService{
         if (emailExists(accountForm.getEmail())) {
             throw new RuntimeException("There is an account with that email address: " + accountForm.getEmail());
         }
-        final User user = new User(accountForm);
+        final User user = accountForm.toUser();
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 

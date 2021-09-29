@@ -25,14 +25,6 @@ public class User {
     @Column(name = "nickname")
     private String nickName;
 
-    public User(UserForm userForm){
-        this.email = userForm.getEmail();
-        this.gender = userForm.getGender();
-        this.name = userForm.getName();
-        this.password = userForm.getPassword();
-        this.nickName = userForm.getNickName();
-        this.taxId = userForm.getTaxId();
-    }
     public User() {
     }
 
