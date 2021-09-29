@@ -3,10 +3,7 @@ package com.shoppcrypto.shoppcrypto.controller;
 
 import com.shoppcrypto.shoppcrypto.business.ProductBusinessService;
 import com.shoppcrypto.shoppcrypto.dto.ProductDto;
-import com.shoppcrypto.shoppcrypto.dto.UserDto;
 import com.shoppcrypto.shoppcrypto.form.ProductForm;
-import com.shoppcrypto.shoppcrypto.model.Product;
-import com.shoppcrypto.shoppcrypto.persistence.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,5 +47,10 @@ public class ProductController {
     @GetMapping()
     public List<ProductDto> listProducts(){
         return productBusinessService.listProducts();
+    }
+
+    @GetMapping("/search")
+    public List<ProductDto> searchProducts(@RequestParam String searchText){
+        return productBusinessService.listProductsByTitle(searchText);
     }
 }

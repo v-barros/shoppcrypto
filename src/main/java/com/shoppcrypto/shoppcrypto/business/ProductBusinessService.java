@@ -13,4 +13,6 @@ public interface ProductBusinessService {
     public Optional<ProductDto> getProduct(String id);
 
     public List<ProductDto> listProducts();
+
+    public List<ProductDto> listProductsByTitle(String title);
 }

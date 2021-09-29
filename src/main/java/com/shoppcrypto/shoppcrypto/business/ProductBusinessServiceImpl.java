@@ -43,4 +43,12 @@ public class ProductBusinessServiceImpl implements ProductBusinessService{
         List<Product> products = productRepository.findAll();
         return products.stream().map(product->new ProductDto(product)).collect(Collectors.toList());
     }
+
+    @Override
+    public List<ProductDto> listProductsByTitle(String title) {
+        List<Product> productList =productRepository.findAllByTitleLikeText(title);
+        return productList.stream().map(product -> new ProductDto(product)).collect(Collectors.toList());
+    }
+
+
 }
