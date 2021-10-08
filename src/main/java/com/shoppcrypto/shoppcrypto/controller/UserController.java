@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.Optional;
 import java.util.UUID;
@@ -24,7 +26,7 @@ public class UserController {
 
     @PostMapping("/registration")
     @Transactional
-    private ResponseEntity<UserDto> saveUser(@RequestBody UserForm userForm, UriComponentsBuilder uriBuilder){
+    private ResponseEntity<UserDto> saveUser(@Valid @RequestBody UserForm userForm, UriComponentsBuilder uriBuilder){
 
         Optional<UserDto> optionalUser = userBusinessService.registerNewUserAccount(userForm);
 
