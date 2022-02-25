@@ -13,18 +13,15 @@ public class UserForm {
     private String password;
     @NotNull @Size(min = 2, max = 50)
     private String name;
-    @NotNull @Size(min = 11,max = 14)
-    private String taxId;
     @NotNull
     private char gender;
     @NotNull @NotBlank @Size(min =1,max =50)
     private String nickName;
 
-    public UserForm(String email, String password, String name, String taxId, char gender, String nickName) {
+    public UserForm(String email, String password, String name, char gender, String nickName) {
         this.email = email;
         this.password = password;
         this.name = name;
-        this.taxId = taxId;
         this.gender = gender;
         this.nickName = nickName;
     }
@@ -33,7 +30,6 @@ public class UserForm {
         user.setEmail(getEmail());
         user.setPassword(getPassword());
         user.setName(getName());
-        user.setTaxId(getTaxId());
         user.setGender(getGender());
         user.setNickName(getNickName());
         return user;
@@ -61,14 +57,6 @@ public class UserForm {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getTaxId() {
-        return taxId;
-    }
-
-    public void setTaxId(String taxId) {
-        this.taxId = taxId;
     }
 
     public char getGender() {

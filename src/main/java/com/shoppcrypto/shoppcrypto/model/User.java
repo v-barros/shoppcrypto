@@ -1,7 +1,5 @@
 package com.shoppcrypto.shoppcrypto.model;
 
-import com.shoppcrypto.shoppcrypto.form.UserForm;
-
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.UUID;
@@ -19,8 +17,6 @@ public class User {
     private String password;
     @Column(nullable = false)
     private String name;
-    @Column(name = "taxid",nullable = false)
-    private String taxId;
     private char gender;
     @Column(name = "nickname")
     private String nickName;
@@ -54,14 +50,6 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getTaxId() {
-        return taxId;
-    }
-
-    public void setTaxId(String taxId) {
-        this.taxId = taxId;
     }
 
     public char getGender() {
