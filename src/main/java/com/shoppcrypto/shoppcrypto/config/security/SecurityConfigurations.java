@@ -39,6 +39,8 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers(HttpMethod.POST,"/auth/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/user/**").permitAll()
+                .antMatchers("/login.html", "/", "/home",
+                "/login","/favicon.ico","/*.js","/*.js.map","/*.png","/*.css").permitAll()
                 .anyRequest().authenticated()
                 .and().addFilter(new JwtValidatorFilter(authenticationManager(), configProperties))
                 .csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

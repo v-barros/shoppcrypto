@@ -14,7 +14,7 @@ public class UserDto {
         this.email = user.getEmail();
         this.name = user.getName();
         this.nickName = user.getNickName();
-        this.id = user.getId();
+      //  this.id = user.getId();
     }
 
     public UUID getId() {

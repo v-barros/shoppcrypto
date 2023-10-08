@@ -8,14 +8,14 @@ import java.util.UUID;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+   @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id",updatable = false,unique = true,nullable = false,columnDefinition = "BINARY(16)")
     private UUID id;
-    @Column(unique = true,nullable = false)
+  @Column(unique = true,nullable = false)
     private String email;
     @Column(nullable = false)
     private String password;
-    @Column(nullable = false)
+   @Column(nullable = false)
     private String name;
     private char gender;
     @Column(name = "nickname")
@@ -25,8 +25,8 @@ public class User {
     }
 
     public UUID getId() {
-        return id;
-    }
+       return id;
+   }
 
     public String getEmail() {
         return email;
@@ -73,11 +73,11 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id.equals(user.id);
+        return email.equals(user.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(email);
     }
 }
